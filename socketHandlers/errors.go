@@ -1,5 +1,0 @@
-package sockethandlers
-
-func errorHandler() {
-	
-}
