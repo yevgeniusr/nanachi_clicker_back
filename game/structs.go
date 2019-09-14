@@ -5,48 +5,47 @@ package game
 
 import (
 	"github.com/gorilla/websocket"
-	skilltrees "github.com/yevheniira/nanachi_hub_backend/skilltrees"
+	skilltrees "github.com/PifagorRZ/nanachi_clicker_back/skilltrees"
 )
 
 // Nationalities
 const (
-	INDUS = "indus"
+	INDUS  = "indus"
 	POLAND = "poland"
 )
 
 //Player ...
 type Player struct {
-	Ws *websocket.Conn
-	Name string
-	Money int
-	Workers []Worker
+	Ws             *websocket.Conn
+	Name           string
+	Money          int
+	Workers        []Worker
 	FrontendSkills []skilltrees.Skill
-	BackendSkills []skilltrees.Skill
-	MaxCPS int
-	App Application
+	BackendSkills  []skilltrees.Skill
+	MaxCPS         int
+	App            Application
 }
 
 //Worker ...
 type Worker struct {
-	Name string
+	Name        string
 	Nationality string
-	Level int
-	Price int
-	CPS int
+	Level       int
+	Price       int
+	CPS         int
 }
-
 
 //Application ...
 type Application struct {
 	FrontendCode int
-	BackendCode int
-	Reliability float32
-	Deployed bool
-	MPS int
+	BackendCode  int
+	Reliability  float32
+	Deployed     bool
+	MPS          int
 }
 
 //Message ...
 type Message struct {
-	Type string `json:"type"`
-	Value  interface{} `json:"value"`
+	Type  string      `json:"type"`
+	Value interface{} `json:"value"`
 }

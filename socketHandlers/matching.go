@@ -2,13 +2,13 @@ package sockethandlers
 
 import (
 	"github.com/gorilla/websocket"
-	game "github.com/yevheniira/nanachi_hub_backend/game"
+	game "github.com/PifagorRZ/nanachi_clicker_back/game"
 )
 
 var waiters = []*websocket.Conn{}
 
 // FoundMatchHandler ...
-func FoundMatchHandler(s *websocket.Conn) error  {
+func FoundMatchHandler(s *websocket.Conn) error {
 	waiters = append(waiters, s)
 
 	if len(waiters) >= 1 {

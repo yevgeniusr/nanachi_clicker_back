@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/gorilla/websocket"
-	g "github.com/yevheniira/nanachi_hub_backend/game"
-	handlers "github.com/yevheniira/nanachi_hub_backend/sockethandlers"
+	g "github.com/PifagorRZ/nanachi_clicker_back/game"
+	handlers "github.com/PifagorRZ/nanachi_clicker_back/sockethandlers"
 )
 
 var clients = make(map[*websocket.Conn]bool)
@@ -16,8 +16,6 @@ var upgrader = websocket.Upgrader{
 		return true
 	},
 }
-
-
 
 // HandleConnection ...
 func HandleConnection(w http.ResponseWriter, r *http.Request) {
@@ -44,7 +42,6 @@ func HandleConnection(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-
 func handleMessages() {
 	for {
 		// grab next message from the broadcast channel
@@ -65,4 +62,3 @@ func handleMessages() {
 		// }
 	}
 }
-

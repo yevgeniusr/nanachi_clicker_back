@@ -6,7 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"os"
-	// module "github.com/yevheniira/nanachi_hub_backend/module"
+	// module "github.com/PifagorRZ/nanachi_hub_back/module"
 )
 
 // ServerConfig ...
