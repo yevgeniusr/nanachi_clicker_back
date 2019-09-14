@@ -1,0 +1,5 @@
+package sockethandlers
+
+func errorHandler() {
+	
+}

@@ -11,7 +11,8 @@ import (
 
 // ServerConfig ...
 type ServerConfig struct {
-	Port string `json:"port"`
+	HTTPport string `json:"HTTPport"`
+	TCPport  string `json:"TCPport"`
 }
 
 func main() {
@@ -19,10 +20,12 @@ func main() {
 
 	config := parseConfig(os.Args[1])
 
-	fmt.Printf("Server started on port: %v \n", config.Port)
+	fmt.Printf("Server started on port: %v \n", config.HTTPport)
 	defer fmt.Print("Server stoped")
 
-	http.ListenAndServe(":" + config.Port, r)
+	r.HandleFunc("/ws", HandleConnection)
+	go handleMessages()
+	http.ListenAndServe(":"+config.HTTPport, r)
 }
 
 func parseConfig(path string) *ServerConfig {

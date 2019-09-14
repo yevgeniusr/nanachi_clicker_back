@@ -1,3 +1,4 @@
 {
-    "port": "8080"
+    "HTTPport": "8080",
+    "TCPport": "20"
 }
