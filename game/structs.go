@@ -4,8 +4,9 @@ package game
 //MPS - Modey per second
 
 import (
-	"github.com/gorilla/websocket"
 	skilltrees "github.com/PifagorRZ/nanachi_clicker_back/skilltrees"
+	"github.com/google/uuid"
+	"github.com/gorilla/websocket"
 )
 
 // Nationalities
@@ -16,12 +17,13 @@ const (
 
 //Player ...
 type Player struct {
+	ID             uuid.UUID
 	Ws             *websocket.Conn
 	Name           string
 	Money          int
 	Workers        []Worker
-	FrontendSkills []skilltrees.Skill
-	BackendSkills  []skilltrees.Skill
+	FrontendSkills *[]skilltrees.Skill
+	BackendSkills  *[]skilltrees.Skill
 	MaxCPS         int
 	App            Application
 }
@@ -46,6 +48,12 @@ type Application struct {
 
 //Message ...
 type Message struct {
+	User  *websocket.Conn
 	Type  string      `json:"type"`
 	Value interface{} `json:"value"`
+}
+
+//Click ...
+type Click struct {
+	GameID string
 }

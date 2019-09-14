@@ -1,0 +1,33 @@
+[
+    {
+        "Name": "PHP",
+        "Active": false,
+        "Buyed": false,
+        "Locked": true,
+        "Price": 500,
+        "Img": "",
+        "CodeIncome": 1,
+        "ReliabilityIncome": -0.0001,
+        "Type": "backend",
+        "MaxCPS": 5,
+        "DecreaseCode": 5,
+        "BaseSkill": false,
+        "NextSkills": ["NODE.JS", "symfony"],
+        "AdditionalSkill": "SQL"
+    }, {
+        "Name": "JAVA",
+        "Active": false,
+        "Buyed": false,
+        "Locked": true,
+        "Price": 1000,
+        "Img": "",
+        "CodeIncome": 1,
+        "ReliabilityIncome": 0.001,
+        "Type": "backend",
+        "MaxCPS": 5,
+        "DecreaseCode": 5,
+        "BaseSkill": false,
+        "NextSkills": ["C#", "C++", "erlang"],
+        "AdditionalSkill": false
+    }
+]

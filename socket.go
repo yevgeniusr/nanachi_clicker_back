@@ -37,6 +37,8 @@ func HandleConnection(w http.ResponseWriter, r *http.Request) {
 			delete(clients, ws)
 			break
 		}
+
+		msg.User = ws
 		// send the new message to the broadcast channel
 		broadcast <- msg
 	}
@@ -44,13 +46,14 @@ func HandleConnection(w http.ResponseWriter, r *http.Request) {
 
 func handleMessages() {
 	for {
-		// grab next message from the broadcast channel
-		// msg := <-broadcast
 
-		// switch msg.Type {
-		// case "match_game":
-		// 	handlers.FoundMatchHandler(msg.Value)
-		// }
+		// grab next message from the broadcast channel
+		msg := <-broadcast
+
+		switch msg.Type {
+		case "clicks":
+			handlers.ClickHandler(msg)
+		}
 		// send it out to every client that is currently connected
 		// for client := range clients {
 		// 	err := client.WriteJSON(msg)

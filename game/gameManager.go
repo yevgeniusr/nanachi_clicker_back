@@ -2,7 +2,19 @@ package game
 
 var games = []Game{}
 
-func runGame(game Game) {
+//RunGame ...
+func RunGame(game Game) {
 	game.start()
+	game.startIntervals()
 	games = append(games, game)
+}
+
+//HandleClick ...
+func HandleClick(msg Message) {
+	for _, game := range games {
+		if game.UserHere(msg.User) {
+			game.handleClick(msg.User, msg.Value)
+			game.SendForPlayers(&Message{Type: "game_click", Value: "click"}, msg.User)
+		}
+	}
 }

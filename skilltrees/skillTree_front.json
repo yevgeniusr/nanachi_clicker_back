@@ -1,0 +1,49 @@
+[
+    {
+        "Name": "JS",
+        "Active": false,
+        "Buyed": false,
+        "Locked": true,
+        "Price": 500,
+        "Img": "",
+        "CodeIncome": 1,
+        "ReliabilityIncome": -0.0001,
+        "Type": "frontend",
+        "MaxCPS": 5,
+        "DecreaseCode": 5,
+        "BaseSkill": false,
+        "NextSkills": ["angular", "react", "ember.js"],
+        "AdditionalSkill": false
+    
+    }, {
+        "Name": "HTML",
+        "Active": false,
+        "Buyed": false,
+        "Locked": true,
+        "Price": 100,
+        "Img": "",
+        "CodeIncome": 1,
+        "ReliabilityIncome": 0.0001,
+        "Type": "frontend",
+        "MaxCPS": 5,
+        "DecreaseCode": 5,
+        "BaseSkill": false,
+        "NextSkills": ["XML", "XHTML", "DHTML"],
+        "AdditionalSkill": false
+    },{
+        "Name": "CSS",
+        "Active": false,
+        "Buyed": false,
+        "Locked": true,
+        "Price": 300,
+        "Img": "",
+        "CodeIncome": 1,
+        "ReliabilityIncome": -0.00001,
+        "Type": "frontend",
+        "MaxCPS": 5,
+        "DecreaseCode": 5,
+        "BaseSkill": false,
+        "NextSkills": ["SASS", "LESS", "STYLUS"],
+        "AdditionalSkill": false
+    }
+]

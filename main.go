@@ -24,6 +24,7 @@ func main() {
 	defer fmt.Print("Server stoped")
 
 	r.HandleFunc("/ws", HandleConnection)
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir("./static/")))
 	go handleMessages()
 	http.ListenAndServe(":"+config.HTTPport, r)
 }

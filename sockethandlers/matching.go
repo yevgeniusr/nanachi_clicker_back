@@ -11,8 +11,8 @@ var waiters = []*websocket.Conn{}
 func FoundMatchHandler(s *websocket.Conn) error {
 	waiters = append(waiters, s)
 
-	if len(waiters) >= 1 {
-		game.MakeGame(waiters[:1])
+	if len(waiters) >= 2 {
+		game.MakeGame(waiters[:2])
 		waiters = []*websocket.Conn{}
 	}
 
