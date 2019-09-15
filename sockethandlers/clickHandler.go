@@ -6,5 +6,5 @@ import (
 
 //ClickHandler ...
 func ClickHandler(value g.Message) {
-	g.HandleClick(value)
+	go g.HandleClick(value)
 }

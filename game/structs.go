@@ -39,11 +39,13 @@ type Worker struct {
 
 //Application ...
 type Application struct {
-	FrontendCode int
-	BackendCode  int
-	Reliability  float32
-	Deployed     bool
-	MPS          int
+	FrontendCode       int
+	BackendCode        int
+	Reliability        float32
+	Deployed           bool
+	DeployCost         int
+	DeployRequirements Click
+	MPS                int
 }
 
 //Message ...
@@ -55,5 +57,6 @@ type Message struct {
 
 //Click ...
 type Click struct {
-	GameID string
+	FrontendClicks int
+	BackendClicks  int
 }

@@ -6,6 +6,7 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
+	skilltrees "github.com/PifagorRZ/nanachi_clicker_back/skilltrees"
 )
 
 //Game ...
@@ -49,7 +50,7 @@ func (g *Game) SendForPlayers(m *Message, user *websocket.Conn) {
 
 //SendForPlayer ...
 func (g *Game) SendForPlayer(m *Message, user *websocket.Conn) {
-		_ = user.WriteJSON(m)
+	_ = user.WriteJSON(m)
 }
 
 func (g *Game) sendPlayers() {
@@ -64,22 +65,51 @@ func (g *Game) sendPlayers() {
 	}
 }
 
-func (g * Game) handleClick(*websocket.Conn, interface {}) {
+func (g *Game) handleClick(usr *websocket.Conn, clicks Click) {
+	for _, player := range *g.Players {
+		if player.Ws == usr {
+			ActiveBack := getActive(player.BackendSkills)
+			ActiveFront := getActive(player.FrontendSkills)
 
+			if ActiveBack != nil {
+				player.App.BackendCode = clicks.BackendClicks * ActiveBack.CodeIncome
+			} else {
+				player.App.BackendCode = clicks.BackendClicks * 0
+			}
+
+			if ActiveFront != nil {
+				player.App.FrontendCode = clicks.FrontendClicks * ActiveFront.CodeIncome
+			} else {
+				player.App.FrontendCode = clicks.FrontendClicks * 0
+			}
+
+			
+		}
+	}
 }
 
 func (g *Game) startIntervals() {
-	ticker := time.NewTicker(5 * time.Second)
+	ticker := time.NewTicker(1 * time.Second)
 	quit := make(chan struct{})
 	go func() {
 		for {
 			select {
 			case <-ticker.C:
-				g.SendForPlayers(&Message{Type: "game_tick", Value: g}, nil)
+				go g.SendForPlayers(&Message{Type: "game_tick", Value: g}, nil)
 			case <-quit:
 				ticker.Stop()
 				return
 			}
 		}
 	}()
+}
+
+func getActive(skills *[]skilltrees.Skill) *skilltrees.Skill {
+	for _, skill := range *skills {
+		if skill.Active {
+			return &skill
+		} 
+	}
+
+	return nil
 }

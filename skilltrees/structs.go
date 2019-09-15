@@ -14,7 +14,7 @@ type Skill struct {
 	Locked bool
 	Price int
 	Img string
-	CodeIncome float32
+	CodeIncome int
 	ReliabilityIncome float32
 	Type string
 	MaxCPS int

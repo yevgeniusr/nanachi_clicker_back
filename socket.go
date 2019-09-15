@@ -26,7 +26,33 @@ func HandleConnection(w http.ResponseWriter, r *http.Request) {
 	// ensure connection close when function returns
 	defer ws.Close()
 	clients[ws] = true
-	handlers.FoundMatchHandler(ws)
+	go handlers.FoundMatchHandler(ws)
+
+	for {
+		var msg g.Message
+		// Read in a new message as JSON and map it to a Message object
+		err := ws.ReadJSON(&msg)
+		if err != nil {
+			log.Printf("error: %v", err)
+			delete(clients, ws)
+			break
+		}
+
+		msg.User = ws
+		// send the new message to the broadcast channel
+		broadcast <- msg
+	}
+}
+
+//HandleConnection2 ...
+func HandleConnection2(w http.ResponseWriter, r *http.Request) {
+	ws, err := upgrader.Upgrade(w, r, nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+	// ensure connection close when function returns
+	defer ws.Close()
+	clients[ws] = true
 
 	for {
 		var msg g.Message

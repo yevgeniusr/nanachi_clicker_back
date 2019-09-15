@@ -1,8 +1,8 @@
 package sockethandlers
 
 import (
-	"github.com/gorilla/websocket"
 	game "github.com/PifagorRZ/nanachi_clicker_back/game"
+	"github.com/gorilla/websocket"
 )
 
 var waiters = []*websocket.Conn{}
@@ -11,11 +11,10 @@ var waiters = []*websocket.Conn{}
 func FoundMatchHandler(s *websocket.Conn) error {
 	waiters = append(waiters, s)
 
-	if len(waiters) >= 2 {
-		game.MakeGame(waiters[:2])
+	if len(waiters) >= 4 {
+		game.MakeGame(waiters[:4])
 		waiters = []*websocket.Conn{}
 	}
 
 	return nil
 }
-
